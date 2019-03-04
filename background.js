@@ -13,7 +13,7 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
     })
 
     for (var i = 0; i < details.requestHeaders.length; ++i) {
-      if (details.requestHeaders[i].name === 'Referer' && details.requestHeaders[i].value.includes('oload.stream/embed')) {
+      if (details.requestHeaders[i].name === 'Referer' && details.requestHeaders[i].value.includes('oload') || details.requestHeaders[i].value.includes('openload')) {
         const body = new URLSearchParams()
         body.append('link', details.requestHeaders[i].value)
         fetch('https://api.real-debrid.com/rest/1.0/unrestrict/check', {
@@ -49,7 +49,7 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
       }
     }
   },
-  {urls: ["https://oload.stream/*", "https://1fiagej.oloadcdn.net/*"],
+  {urls: ["https://oload.stream/*", "https://1fiagej.oloadcdn.net/*", "https://openload.co/*"],
   types: ["media"]},
   ["requestHeaders"])
 
